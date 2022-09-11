@@ -45,7 +45,7 @@
   // ADD
   const addTask = async () => {
     try {
-      await addDoc(collection(db, "tasks"), {...task,createdAt: new Date()});
+      await addDoc(collection(db, "tasks"), { ...task, createdAt: new Date() });
       console.log("Task saved");
       Toastify({
         text: "New Task Created",
@@ -70,8 +70,8 @@
       // TODO: confirm alert pending
       await deleteDoc(doc(db, "tasks", id));
       Toastify({
-        style:{
-          background: "#f44336"
+        style: {
+          background: "#f44336",
         },
         text: "Task Deleted",
       }).showToast();
@@ -109,13 +109,18 @@
 <main class="container p-4">
   <div class="row">
     <div class="col-md-6">
-
       <form on:submit|preventDefault={handleSubmit} class="card card-body p-5">
         <label for="title" class="h4">Title</label>
-        <input bind:value={task.title} type="text" placeholder="Write a text" class="form-control"/>
+        <input
+          bind:value={task.title}
+          type="text"
+          placeholder="Write a text"
+          class="form-control"
+        />
 
         <label for="description" class="h4">Description</label>
-        <textarea class="form-control"
+        <textarea
+          class="form-control"
           bind:value={task.description}
           id="description"
           rows="3"
@@ -123,7 +128,6 @@
         />
         <button class="btn btn-primary mt-3">Save</button>
       </form>
-
     </div>
 
     <div class="col-md-6">
@@ -131,7 +135,11 @@
         <div class="card card-body mt-2">
           <div class="d-flex justify-content-between">
             <h5>{task.title}</h5>
-            <i class="material-icons" style="cursor: pointer" on:click={editTask(task)}>edit</i>
+            <i
+              class="material-icons"
+              style="cursor: pointer"
+              on:click={editTask(task)}>edit</i
+            >
           </div>
 
           <p>{task.description}</p>
@@ -141,9 +149,9 @@
               style="vertical-align: middle"
               on:click={deleteTask(task.id)}
             >
-              <i class="material-icons" style="vertical-align: middle"
-                >delete_forever</i
-              >
+              <i class="material-icons" style="vertical-align: middle">
+                delete_forever
+              </i>
               Delete
             </button>
           </div>
