@@ -109,13 +109,14 @@
 <main class="container p-4">
   <div class="row">
     <div class="col-md-6">
-      <form on:submit|preventDefault={handleSubmit} class="card card-body p-5">
+      <form on:submit|preventDefault={handleSubmit} class="card card-body p-5 mb-2">
         <label for="title" class="h4">Title</label>
         <input
           bind:value={task.title}
           type="text"
           placeholder="Write a text"
           class="form-control"
+          required
         />
 
         <label for="description" class="h4">Description</label>
@@ -125,6 +126,7 @@
           id="description"
           rows="3"
           placeholder="Write a description"
+          required
         />
         <button class="btn btn-primary mt-3">Save</button>
       </form>
@@ -132,17 +134,22 @@
 
     <div class="col-md-6">
       {#each tasks as task}
-        <div class="card card-body mt-2">
+        <div class="card card-body mb-2">
           <div class="d-flex justify-content-between">
             <h5>{task.title}</h5>
+
             <i
               class="material-icons"
               style="cursor: pointer"
-              on:click={editTask(task)}>edit</i
+              on:click={editTask(task)}
             >
+              edit
+            </i>
           </div>
 
           <p>{task.description}</p>
+          <p>{task.createdAt}</p>
+
           <div>
             <button
               class="btn btn-danger"
